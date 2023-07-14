@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "bank-app"
+version = "0.1.0"
+description = ""
+authors = ["batyr <mansurmekin@gmail.com>"]
+readme = "README.md"
+packages = [{include = "bank_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.97.0"
+sqlalchemy = "^2.0.18"
+uvicorn = "^0.22.0"
+orjson = "^3.9.2"
+alembic = "^1.11.1"
+asyncpg = "^0.28.0"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
