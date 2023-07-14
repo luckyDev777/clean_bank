@@ -7,10 +7,9 @@ class DBConfig:
     db_user: str
     db_password: str
     db_name: str
-    db_host: str = "localhost"
+    db_host: str = "127.0.0.1"
     db_echo: bool = True
 
     @property
     def full_url(self) -> str:
-        return f"postgresql+asyncpg://{self.db_user}:\
-            {self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}" 
+        return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"

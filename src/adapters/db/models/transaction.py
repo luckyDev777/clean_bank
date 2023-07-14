@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import ForeignKey, String, Numeric, DateTime, func
+from sqlalchemy import ForeignKey, String, DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column
 from .base import BaseModel
 
@@ -8,7 +8,7 @@ class Transaction(BaseModel):
     __tablename__ = 'transactions'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    amount: Mapped[Numeric] = mapped_column(nullable=False)
+    amount: Mapped[float] = mapped_column(nullable=False)
     operation_date: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         default=lambda: datetime.now(),

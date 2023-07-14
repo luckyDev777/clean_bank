@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, String, Numeric
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from .base import BaseModel
 from .transaction import Transaction
@@ -9,7 +9,7 @@ class Account(BaseModel):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     account_number: Mapped[str] = mapped_column(String(20))
-    balance: Mapped[Numeric] = mapped_column(nullable=False)
+    balance: Mapped[float] = mapped_column(nullable=False)
     customer_id = ForeignKey("customers.id")
     transactions: Mapped[list["Transaction"]] = relationship(back_populates="account")
 
