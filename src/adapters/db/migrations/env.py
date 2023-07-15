@@ -8,10 +8,8 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 
 from src.adapters.db.models.base import BaseModel
-from src.adapters.db.models.account import Account
-from src.adapters.db.models.customer import Customer
-from src.adapters.db.models.transaction import Transaction
 from src.presentation.api.settings.config import load_config
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,8 +20,8 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option("sqlalchemy.url", load_config().db.full_url)
 
+config.set_main_option("sqlalchemy.url", load_config().db.full_url)
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel

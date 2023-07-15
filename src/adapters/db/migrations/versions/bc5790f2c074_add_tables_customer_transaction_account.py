@@ -1,8 +1,8 @@
-"""create tables customer transaction account
+"""add tables customer transaction account
 
-Revision ID: 6758303af796
+Revision ID: bc5790f2c074
 Revises: 
-Create Date: 2023-07-14 21:07:41.518369
+Create Date: 2023-07-15 19:35:22.099011
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6758303af796'
+revision = 'bc5790f2c074'
 down_revision = None
 branch_labels = None
 depends_on = None
