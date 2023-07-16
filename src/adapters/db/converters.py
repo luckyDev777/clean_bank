@@ -7,5 +7,6 @@ def convert_customer_models_to_dto(customer: models.Customer) -> dto.Customer:
         customer_id=customer.id,
         name=customer.name,
         email=customer.email,
-        phone_number=customer.phone_number
+        phone_number=customer.phone_number,
+        accounts=customer.accounts
     )

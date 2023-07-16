@@ -14,6 +14,6 @@ def build_app(config: Config) -> FastAPI:
 
     # Configuration Block
     setup_controllers(app=app)
-    setup_di(app=app)
+    setup_di(app=app, config=config)
 
     return app

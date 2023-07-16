@@ -11,7 +11,7 @@ class Customer(BaseModel):
     name: Mapped[str] = mapped_column(String(30))
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
     phone_number: Mapped[str] = mapped_column(nullable=False, unique=True)
-    accounts: Mapped[list["Account"]] = relationship(back_populates="customer") 
+    accounts: Mapped[list["Account"]] = relationship(back_populates="customer", lazy="joined") 
 
     def __repr__(self) -> str:
         return f"Customer(id={self.id!r}, name={self.name!r}, email={self.email!r})"

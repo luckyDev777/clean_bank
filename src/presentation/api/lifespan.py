@@ -17,6 +17,6 @@ async def lifespan(app: FastAPI):
 
     yield
 
-    await app.state.dispose()
+    await app.state.engine.dispose()
 
     del app.state.engine

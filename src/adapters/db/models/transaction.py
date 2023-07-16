@@ -1,8 +1,8 @@
 from datetime import datetime
 from sqlalchemy import ForeignKey, String, DateTime, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .base import BaseModel
-
+from .account import Account
 
 class Transaction(BaseModel):
     __tablename__ = 'transactions'
@@ -16,7 +16,8 @@ class Transaction(BaseModel):
         nullable=False
     )
     description: Mapped[str] = mapped_column(String(255))
-    account_id = ForeignKey("accounts.id")
+    account_id: Mapped[int] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), nullable=False)
+    account: Mapped["Account"] = relationship(back_populates="transactions")
 
     def __repr__(self) -> str:
         return f"Transaction(id={self.id!r}, amount={self.amount!r}, operation_date={self.operation_date!r})"

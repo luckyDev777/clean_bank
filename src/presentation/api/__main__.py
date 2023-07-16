@@ -5,8 +5,8 @@ from .settings.config import load_config
 
 
 def main() -> FastAPI:
-    config = load_config()
+    config_ = load_config()
 
-    app = build_app(config=config)
+    app = build_app(config=config_)
 
     return app

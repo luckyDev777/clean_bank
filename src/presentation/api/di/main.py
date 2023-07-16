@@ -11,11 +11,11 @@ from .stub import Stub
 from ..settings.config import Config
 
 
-def setup_di(app: FastAPI) -> None:
+def setup_di(app: FastAPI, config: Config) -> None:
     # Setup DB dependencies
     app.dependency_overrides[Stub(AsyncEngine)] = lambda: app.state.engine
     app.dependency_overrides[Stub(async_sessionmaker[AsyncSession])] = lambda: app.state.pool
-    app.dependency_overrides[Stub(AsyncEngine)] = session_provider
+    app.dependency_overrides[Stub(AsyncSession)] = session_provider
     app.dependency_overrides[Stub(UoW)] = uow_provider
     app.dependency_overrides[Stub(CustomerDAO)] = customer_dao_provider
 
