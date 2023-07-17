@@ -1,4 +1,3 @@
-from typing import Any
 from src.core.customer import dto
 from src.core.customer.interfaces.dao import CustomerDAO
 

@@ -9,7 +9,7 @@ class Customer(DTO):
     name: str
     email: str
     phone_number: str
-    accounts: list
+    # accounts: list
 
 
 @dataclass(frozen=True)
