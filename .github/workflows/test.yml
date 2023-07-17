@@ -7,9 +7,9 @@ on:
   workflow_call:
 
   pull_request:
-    branches: [ master, dev ]
+    branches: [ main, dev ]
   push:
-    branches: [ master, dev]
+    branches: [ main, dev]
 
 jobs:
   build:
