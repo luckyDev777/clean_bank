@@ -4,7 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["batyr <mansurmekin@gmail.com>"]
 readme = "README.md"
-packages = [{include = "bank_app"}]
+homepage = "https://github.com/MansurMekin/clean_bank"
+repository = "https://github.com/MansurMekin/clean_bank"
 
 [tool.poetry.dependencies]
 python = "^3.10"
