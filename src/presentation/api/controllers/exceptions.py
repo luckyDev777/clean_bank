@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, Request
+from fastapi import FastAPI, Request, status
 from fastapi.responses import ORJSONResponse
 
 from src.core.common.exceptions.base import AppException
@@ -12,17 +12,14 @@ def setup_exception_handlers(app: FastAPI) -> None:
 
 
 async def customer_id_does_not_exist_handler(
-    request: Request, 
-    err: CustomerDoesNotExists
+    request: Request, err: CustomerDoesNotExists
 ) -> ORJSONResponse:
-    return await handle_error(request=request, err=err, status_code=status.HTTP_404_NOT_FOUND)
+    return await handle_error(
+        request=request, err=err, status_code=status.HTTP_404_NOT_FOUND
+    )
 
 
-
-async def unknown_exception_handler(
-    request: Request, 
-    err: Exception
-) -> ORJSONResponse:
+async def unknown_exception_handler(request: Request, err: Exception) -> ORJSONResponse:
     return ORJSONResponse(
         ErrorResult(message="Unknown server error has occurred", data=err),
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -30,9 +27,7 @@ async def unknown_exception_handler(
 
 
 async def handle_error(
-    request: Request, 
-    err: AppException, 
-    status_code: int
+    request: Request, err: AppException, status_code: int
 ) -> ORJSONResponse:
     return ORJSONResponse(
         ErrorResult(message=err.message, data=err),

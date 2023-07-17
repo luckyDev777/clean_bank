@@ -14,7 +14,7 @@ class DeleteCustomerService:
         except DAOError as err:
             await self._uow.rollback()
             raise err
-        
+
         await self._uow.commit()
 
         return None

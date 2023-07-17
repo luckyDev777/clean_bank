@@ -1,20 +1,18 @@
 from typing import Annotated
-from fastapi import APIRouter, Response, status, Depends
+
+from fastapi import APIRouter, Depends, Response, status
 
 from src.core.customer import dto
-from src.core.customer.services.create_customer import CreateCustomerService
-from src.core.customer.services.get_customer import GetCustomerService
-from src.core.customer.services.get_all_customers import GetAllCustomers
-from src.core.customer.services.delete_customer import DeleteCustomerService
-from src.core.customer.services.update_customer import UpdateCustomerService
-
-from src.presentation.api.di.stub import Stub
-from src.presentation.api.controllers.responses import ErrorResult
 from src.core.customer.exceptions import CustomerDoesNotExists
-
+from src.core.customer.services.create_customer import CreateCustomerService
+from src.core.customer.services.delete_customer import DeleteCustomerService
+from src.core.customer.services.get_all_customers import GetAllCustomers
+from src.core.customer.services.get_customer import GetCustomerService
+from src.core.customer.services.update_customer import UpdateCustomerService
+from src.presentation.api.controllers.responses import ErrorResult
+from src.presentation.api.di.stub import Stub
 
 router = APIRouter(prefix="/customers", tags=["customers"])
-
 
 
 @router.get(
@@ -38,20 +36,17 @@ async def get_customers(
 )
 async def get_customer_by_id(
     customer_id: int,
-    service: Annotated[GetCustomerService, Depends(Stub(GetCustomerService))]
+    service: Annotated[GetCustomerService, Depends(Stub(GetCustomerService))],
 ) -> dto.Customer:
     return await service(dto.GetCustomer(customer_id=customer_id))
 
 
 @router.post(
-    path="/create",
-    responses={
-        status.HTTP_201_CREATED: {"model": dto.Customer}
-    }
+    path="/create", responses={status.HTTP_201_CREATED: {"model": dto.Customer}}
 )
 async def create_customer(
     customer_info: dto.CreateCustomer,
-    service: Annotated[CreateCustomerService, Depends(Stub(CreateCustomerService))]
+    service: Annotated[CreateCustomerService, Depends(Stub(CreateCustomerService))],
 ) -> dto.Customer:
     return await service(customer_info=customer_info)
 
@@ -61,12 +56,12 @@ async def create_customer(
     responses={
         status.HTTP_201_CREATED: {"model": dto.Customer},
         status.HTTP_404_NOT_FOUND: {"model": ErrorResult[CustomerDoesNotExists]},
-    }
+    },
 )
 async def update_customer(
     customer_id: int,
     customer_info: dto.UpdateCustomer,
-    service: Annotated[UpdateCustomerService, Depends(Stub(UpdateCustomerService))]
+    service: Annotated[UpdateCustomerService, Depends(Stub(UpdateCustomerService))],
 ) -> dto.Customer:
     return await service(customer_id=customer_id, customer_info=customer_info)
 
@@ -75,12 +70,12 @@ async def update_customer(
     path="/{customer_id}",
     responses={
         status.HTTP_204_NO_CONTENT: {"model": None},
-        status.HTTP_404_NOT_FOUND: {"model": ErrorResult[CustomerDoesNotExists]}
-    }
+        status.HTTP_404_NOT_FOUND: {"model": ErrorResult[CustomerDoesNotExists]},
+    },
 )
 async def delete_customer(
     customer_id: int,
-    service: Annotated[DeleteCustomerService, Depends(Stub(DeleteCustomerService))]
+    service: Annotated[DeleteCustomerService, Depends(Stub(DeleteCustomerService))],
 ) -> None:
     await service(customer_id=customer_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

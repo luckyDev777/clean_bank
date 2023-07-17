@@ -14,5 +14,7 @@ def uow_provider(session: Annotated[AsyncSession, Depends(Stub(AsyncSession))]) 
     return SQLAlchemyUoW(session=session)
 
 
-def customer_dao_provider(session: Annotated[AsyncSession, Depends(Stub(AsyncSession))]) -> CustomerDAO:
+def customer_dao_provider(
+    session: Annotated[AsyncSession, Depends(Stub(AsyncSession))]
+) -> CustomerDAO:
     return CustomerDAOImpl(session=session)

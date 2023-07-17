@@ -1,7 +1,6 @@
 from pydantic import BaseSettings
 
 
-
 class ConfigExtractor(BaseSettings):
     db_name: str
     db_port: int
@@ -10,4 +9,4 @@ class ConfigExtractor(BaseSettings):
 
     class Config:
         env_file = ".env"
-        env_file_encoding = 'utf-8'
+        env_file_encoding = "utf-8"

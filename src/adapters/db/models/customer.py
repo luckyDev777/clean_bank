@@ -1,7 +1,8 @@
 from sqlalchemy import String
-from sqlalchemy.orm import relationship, Mapped, mapped_column
-from .base import BaseModel
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from .account import Account
+from .base import BaseModel
 
 
 class Customer(BaseModel):
@@ -11,7 +12,7 @@ class Customer(BaseModel):
     name: Mapped[str] = mapped_column(String(30))
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
     phone_number: Mapped[str] = mapped_column(nullable=False, unique=True)
-    accounts: Mapped[list["Account"]] = relationship(back_populates="customer") 
+    accounts: Mapped[list["Account"]] = relationship(back_populates="customer")
     # , lazy="joined"
 
     def __repr__(self) -> str:

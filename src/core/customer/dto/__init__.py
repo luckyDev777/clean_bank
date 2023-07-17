@@ -1,4 +1,3 @@
-from .customer import Customer, GetCustomer, CreateCustomer, UpdateCustomer
-
+from .customer import CreateCustomer, Customer, GetCustomer, UpdateCustomer
 
 __all__ = ["Customer", "GetCustomer", "CreateCustomer", "UpdateCustomer"]

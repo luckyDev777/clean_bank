@@ -1,11 +1,14 @@
 from datetime import datetime
-from sqlalchemy import ForeignKey, String, DateTime, func
+
+from sqlalchemy import DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from .base import BaseModel
+
 from .account import Account
+from .base import BaseModel
+
 
 class Transaction(BaseModel):
-    __tablename__ = 'transactions'
+    __tablename__ = "transactions"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     amount: Mapped[float] = mapped_column(nullable=False)
@@ -13,10 +16,12 @@ class Transaction(BaseModel):
         DateTime(timezone=True),
         default=lambda: datetime.now(),
         server_default=func.now(),
-        nullable=False
+        nullable=False,
     )
     description: Mapped[str] = mapped_column(String(255))
-    account_id: Mapped[int] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), nullable=False)
+    account_id: Mapped[int] = mapped_column(
+        ForeignKey("accounts.id", ondelete="CASCADE"), nullable=False
+    )
     account: Mapped["Account"] = relationship(back_populates="transactions")
 
     def __repr__(self) -> str:
