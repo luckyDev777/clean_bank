@@ -4,13 +4,10 @@ from fastapi import Depends
 
 from src.core.common.interfaces.persistance.uow import UoW
 from src.core.customer.interfaces.dao import CustomerDAO
-from src.core.customer.services import (
-    CreateCustomerService,
-    DeleteCustomerService,
-    GetAllCustomers,
-    GetCustomerService,
-    UpdateCustomerService,
-)
+from src.core.customer.services import (CreateCustomerService,
+                                        DeleteCustomerService, GetAllCustomers,
+                                        GetCustomerService,
+                                        UpdateCustomerService)
 from src.presentation.api.di.stub import Stub
 
 
@@ -27,21 +24,21 @@ def get_customer_service(
 
 
 def create_customer_service(
+    dao: Annotated[CustomerDAO, Depends(Stub(CustomerDAO))],
     uow: Annotated[UoW, Depends(Stub(UoW))],
-    dao: Annotated[UoW, Depends(Stub(CustomerDAO))],
 ) -> CreateCustomerService:
-    return CreateCustomerService(uow=uow, dao=dao)
+    return CreateCustomerService(dao=dao, uow=uow)
 
 
 def update_customer_service(
+    dao: Annotated[CustomerDAO, Depends(Stub(CustomerDAO))],
     uow: Annotated[UoW, Depends(Stub(UoW))],
-    dao: Annotated[UoW, Depends(Stub(CustomerDAO))],
 ) -> UpdateCustomerService:
-    return UpdateCustomerService(uow=uow, dao=dao)
+    return UpdateCustomerService(dao=dao, uow=uow)
 
 
 def delete_customer_service(
+    dao: Annotated[CustomerDAO, Depends(Stub(CustomerDAO))],
     uow: Annotated[UoW, Depends(Stub(UoW))],
-    dao: Annotated[UoW, Depends(Stub(CustomerDAO))],
 ) -> DeleteCustomerService:
-    return DeleteCustomerService(uow=uow, dao=dao)
+    return DeleteCustomerService(dao=dao, uow=uow)

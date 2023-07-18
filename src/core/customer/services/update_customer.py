@@ -11,7 +11,7 @@ class UpdateCustomerService:
 
     async def __call__(
         self, customer_id: int, customer_info: dto.UpdateCustomer
-    ) -> dto.GetCustomer:
+    ) -> dto.Customer:
         try:
             updated_customer = await self._dao.update_customer(
                 customer_id=customer_id, customer_info=customer_info
