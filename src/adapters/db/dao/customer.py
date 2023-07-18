@@ -1,5 +1,4 @@
 from sqlalchemy import select
-from sqlalchemy.orm import joinedload
 
 from src.core.customer import dto
 from src.core.customer.exceptions import CustomerDoesNotExists
@@ -7,7 +6,7 @@ from src.core.customer.interfaces.dao import CustomerDAO
 
 from ..converters import convert_customer_models_to_dto
 from ..exception_mapper import exception_mapper
-from ..models import Account, Customer
+from ..models import Customer
 from .base import SQLAlchemyDAO
 
 
