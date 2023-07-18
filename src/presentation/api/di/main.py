@@ -1,22 +1,26 @@
 from fastapi import FastAPI
-from sqlalchemy.ext.asyncio import (AsyncEngine, AsyncSession,
-                                    async_sessionmaker)
+from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker
 
 from src.core.common.interfaces.persistance.uow import UoW
 from src.core.customer.interfaces.dao import CustomerDAO
-from src.core.customer.services import (CreateCustomerService,
-                                        DeleteCustomerService, GetAllCustomers,
-                                        GetCustomerService,
-                                        UpdateCustomerService)
+from src.core.customer.services import (
+    CreateCustomerService,
+    DeleteCustomerService,
+    GetAllCustomers,
+    GetCustomerService,
+    UpdateCustomerService,
+)
 
 from ..settings.config import Config
 from .providers.db.main import session_provider
 from .providers.db.uow import customer_dao_provider, uow_provider
-from .providers.services.customer import (create_customer_service,
-                                          delete_customer_service,
-                                          get_all_customers_service,
-                                          get_customer_service,
-                                          update_customer_service)
+from .providers.services.customer import (
+    create_customer_service,
+    delete_customer_service,
+    get_all_customers_service,
+    get_customer_service,
+    update_customer_service,
+)
 from .stub import Stub
 
 

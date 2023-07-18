@@ -4,10 +4,13 @@ from fastapi import Depends
 
 from src.core.common.interfaces.persistance.uow import UoW
 from src.core.customer.interfaces.dao import CustomerDAO
-from src.core.customer.services import (CreateCustomerService,
-                                        DeleteCustomerService, GetAllCustomers,
-                                        GetCustomerService,
-                                        UpdateCustomerService)
+from src.core.customer.services import (
+    CreateCustomerService,
+    DeleteCustomerService,
+    GetAllCustomers,
+    GetCustomerService,
+    UpdateCustomerService,
+)
 from src.presentation.api.di.stub import Stub
 
 
