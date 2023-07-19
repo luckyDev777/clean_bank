@@ -16,6 +16,7 @@ orjson = "^3.9.2"
 alembic = "^1.11.1"
 asyncpg = "^0.28.0"
 python-dotenv = "^1.0.0"
+httpx = "^0.24.1"
 
 
 [tool.poetry.group.dev]
