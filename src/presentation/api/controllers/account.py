@@ -9,7 +9,6 @@ from src.core.account.services.get_account import GetAccountService
 from src.presentation.api.controllers.responses.exceptions import ErrorResult
 from src.presentation.api.di.stub import Stub
 
-
 router = APIRouter(prefix="/accounts", tags=["accounts"])
 
 

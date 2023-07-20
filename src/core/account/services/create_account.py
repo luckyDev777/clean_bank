@@ -1,7 +1,7 @@
-from src.core.common.exceptions.dao import DAOError
-from src.core.common.interfaces.persistance.uow import UoW
 from src.core.account import dto_account
 from src.core.account.interfaces.dao import AccountDAO
+from src.core.common.exceptions.dao import DAOError
+from src.core.common.interfaces.persistance.uow import UoW
 
 
 class CreateAccountService:
@@ -18,5 +18,4 @@ class CreateAccountService:
 
         await self._uow.commit()
 
-        return new_account 
-    
+        return new_account

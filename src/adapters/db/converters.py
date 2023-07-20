@@ -1,6 +1,6 @@
 from src.adapters.db import models
-from src.core.customer import dto_customer
 from src.core.account import dto_account
+from src.core.customer import dto_customer
 
 
 def convert_customer_models_to_dto(customer: models.Customer) -> dto_customer.Customer:

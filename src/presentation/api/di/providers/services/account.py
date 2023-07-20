@@ -2,12 +2,9 @@ from typing import Annotated
 
 from fastapi import Depends
 
-from src.core.common.interfaces.persistance.uow import UoW
 from src.core.account.interfaces.dao import AccountDAO
-from src.core.account.services import (
-    CreateAccountService, 
-    GetAccountService
-)
+from src.core.account.services import CreateAccountService, GetAccountService
+from src.core.common.interfaces.persistance.uow import UoW
 from src.presentation.api.di.stub import Stub
 
 

@@ -33,4 +33,3 @@ class AccountDAOImpl(SQLAlchemyDAO, AccountDAO):
         await self._session.flush()
 
         return convert_account_model_to_dto(new_account)
-    

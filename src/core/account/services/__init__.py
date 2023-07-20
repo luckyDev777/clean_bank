@@ -5,7 +5,7 @@ from .delete_account import DeleteAccountService
 from .update_account import UpdateAccountService
 
 __all__ = [
-    "CreateAccountService", 
+    "CreateAccountService",
     "GetAccountService",
     "GetAllAccountsService",
     "DeleteAccountService",

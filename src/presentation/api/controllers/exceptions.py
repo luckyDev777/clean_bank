@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import ORJSONResponse
 
+from src.core.account.exceptions import AccountDoesNotExists
 from src.core.common.exceptions.base import AppException
 from src.core.customer.exceptions import CustomerDoesNotExists
-from src.core.account.exceptions import AccountDoesNotExists
 from src.presentation.api.controllers.responses import ErrorResult
 
 
