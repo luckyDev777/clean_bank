@@ -20,6 +20,7 @@ async def customer_id_does_not_exist_handler(
         request=request, err=err, status_code=status.HTTP_404_NOT_FOUND
     )
 
+
 async def account_id_does_not_exist_handler(
     request: Request, err: AccountDoesNotExists
 ) -> ORJSONResponse:

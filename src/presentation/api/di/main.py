@@ -41,7 +41,6 @@ def setup_di(app: FastAPI, config: Config) -> None:
     app.dependency_overrides[Stub(CustomerDAO)] = customer_dao_provider
     app.dependency_overrides[Stub(AccountDAO)] = account_dao_provider
 
-
     # Setup CustomerServices
     app.dependency_overrides[Stub(CreateCustomerService)] = create_customer_service
     app.dependency_overrides[Stub(GetCustomerService)] = get_customer_service
