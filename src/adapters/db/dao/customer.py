@@ -1,6 +1,6 @@
 from sqlalchemy import select
 
-from src.core.customer import dto
+from src.core.customer import dto_customer
 from src.core.customer.exceptions import CustomerDoesNotExists
 from src.core.customer.interfaces.dao import CustomerDAO
 
@@ -12,7 +12,7 @@ from .base import SQLAlchemyDAO
 
 class CustomerDAOImpl(SQLAlchemyDAO, CustomerDAO):
     @exception_mapper
-    async def get_customer_by_id(self, *, customer_id: int) -> dto.Customer:
+    async def get_customer_by_id(self, *, customer_id: int) -> dto_customer.Customer:
         statement = select(Customer).where(Customer.id == customer_id)
         # statement = select(Customer).options(joinedload(Customer.accounts)).where(Customer.id == customer_id)
         customer: Customer | None = await self._session.scalar(statement=statement)
@@ -21,7 +21,7 @@ class CustomerDAOImpl(SQLAlchemyDAO, CustomerDAO):
         return convert_customer_models_to_dto(customer=customer)
 
     @exception_mapper
-    async def get_customers(self) -> list[dto.Customer]:
+    async def get_customers(self) -> list[dto_customer.Customer]:
         statement = select(Customer)
         customers: list[Customer] = await self._session.scalars(statement=statement)
         return [
@@ -30,8 +30,8 @@ class CustomerDAOImpl(SQLAlchemyDAO, CustomerDAO):
 
     @exception_mapper
     async def create_customer(
-        self, *, customer_info: dto.CreateCustomer
-    ) -> dto.Customer:
+        self, *, customer_info: dto_customer.CreateCustomer
+    ) -> dto_customer.Customer:
         new_customer = Customer(
             name=customer_info.name,
             email=customer_info.email,
@@ -45,8 +45,8 @@ class CustomerDAOImpl(SQLAlchemyDAO, CustomerDAO):
 
     @exception_mapper
     async def update_customer(
-        self, *, customer_id: int, customer_info: dto.UpdateCustomer
-    ) -> dto.Customer:
+        self, *, customer_id: int, customer_info: dto_customer.UpdateCustomer
+    ) -> dto_customer.Customer:
         statement = select(Customer).where(Customer.id == customer_id)
         customer: Customer | None = await self._session.scalar(statement=statement)
         if not customer:

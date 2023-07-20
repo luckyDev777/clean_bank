@@ -1,6 +1,6 @@
 from src.core.common.exceptions.dao import DAOError
 from src.core.common.interfaces.persistance.uow import UoW
-from src.core.customer import dto
+from src.core.customer import dto_customer
 from src.core.customer.interfaces.dao import CustomerDAO
 
 
@@ -10,8 +10,8 @@ class UpdateCustomerService:
         self._uow = uow
 
     async def __call__(
-        self, customer_id: int, customer_info: dto.UpdateCustomer
-    ) -> dto.Customer:
+        self, customer_id: int, customer_info: dto_customer.UpdateCustomer
+    ) -> dto_customer.Customer:
         try:
             updated_customer = await self._dao.update_customer(
                 customer_id=customer_id, customer_info=customer_info
